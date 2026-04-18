@@ -1,0 +1,23 @@
+[Unit]
+Description=Hentai@Home Version Monitor
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/hath-version-monitor
+ExecStart=/usr/bin/python3 /opt/hath-version-monitor/hath_monitor.py --daemon
+Restart=on-failure
+RestartSec=60
+StandardOutput=journal
+StandardError=journal
+
+# 安全加固
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/opt/hath-version-monitor
+PrivateTmp=yes
+
+[Install]
+WantedBy=default.target

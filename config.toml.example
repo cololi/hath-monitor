@@ -1,0 +1,34 @@
+# ==========================================================
+# Hentai@Home 版本与状态监控器 配置文件模板
+# ==========================================================
+
+[monitor]
+# 检查间隔（分钟），推荐 5-10 分钟
+check_interval_minutes = 5
+
+# 启用检查项
+check_official = true        # 监控官方 Java 客户端 (repo.e-hentai.org)
+check_rust = true            # 监控 hath-rust (GitHub Releases)
+check_ehpage = true          # 监控 E-Hentai H@H 管理页面 (需 Cookies)
+check_quota = true           # 每天推送一次免费配额数值
+check_clients = true         # 监控所有 H@H 客户端的状态 (在线/离线)
+
+# E-Hentai cookies (check_ehpage = true 时需要)
+# 请在浏览器中登录后获取 ipb_member_id 和 ipb_pass_hash
+eh_ipb_member_id = "YOUR_MEMBER_ID"
+eh_ipb_pass_hash = "YOUR_PASS_HASH"
+
+# 本地代理 (可选)
+proxy = ""
+
+[notify]
+# ---- Bark (iOS 推送) ----
+bark_url = ""
+bark_sound = "minuet"
+
+# ---- Telegram Bot ----
+telegram_bot_token = ""
+telegram_chat_id = ""
+
+# ---- 通用 Webhooks (支持多个) ----
+webhooks = []
