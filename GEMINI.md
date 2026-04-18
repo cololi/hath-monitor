@@ -7,15 +7,17 @@ This project is a Python-based monitoring tool designed to track Hentai@Home (H@
 -   **Purpose:** Monitors H@H official Java client, `hath-rust` (GitHub releases), and the E-Hentai H@H management page for version updates, daily archive quota, and real-time client status changes.
 -   **Architecture:** A standalone Python script (`hath_monitor.py`) that uses standard libraries for networking, scraping, and database management.
 -   **Core Technologies:**
-    -   **Python 3.11+:** Utilizes the built-in `tomllib` for configuration.
+    -   **Python 3.11+:** Utilizes the built-in `tomllib` (or `tomli` as fallback) for configuration.
     -   **SQLite:** Stores version history and client status state to track changes.
     -   **Regular Expressions:** Extracted data from E-Hentai's HTML management page.
-    -   **Notification Channels:** Supports Bark (iOS), Telegram Bot, and custom Webhooks.
+    -   **Notification Channels:** Supports 10+ channels including Bark, Telegram, Discord (Rich Embeds), Slack, Gotify, Matrix, PushPlus, PushDeer, Pushover, DingTalk, and generic Webhooks.
 -   **Key Components:**
     -   `hath_monitor.py`: Main logic for scraping, checking updates, and sending notifications.
     -   `config.toml`: Configuration for monitor intervals, EH cookies, and notification endpoints.
     -   `hath_monitor.db`: SQLite database for state persistence.
-    -   `hath-monitor.service`: Systemd service unit (runnable as `--user` or system-wide).
+    -   `hath-monitor.service`: Systemd service unit.
+    -   `Dockerfile`: Containerization support.
+    -   `.github/workflows/ci.yml`: Automated Docker builds and GitHub Releases.
 
 ## Setup and Running
 
@@ -25,24 +27,18 @@ This project is a Python-based monitoring tool designed to track Hentai@Home (H@
 -   **Run as Daemon:** `python3 hath_monitor.py --daemon`
 -   **Force Status Report:** `python3 hath_monitor.py --push-all` (Sends current quota and client statuses regardless of changes).
 -   **Check History:** `python3 hath_monitor.py --history`
--   **Service Management (User-level):**
-    -   Restart: `systemctl --user restart hath-monitor.service`
-    -   Status: `systemctl --user status hath-monitor.service`
-    -   Logs: `journalctl --user -u hath-monitor.service -f`
-
-### Configuration
-
--   Ensure `eh_ipb_member_id` and `eh_ipb_pass_hash` are set in `config.toml` to monitor the EH management page.
--   `check_interval_minutes` determines the polling frequency in daemon mode (default is 5 minutes).
+-   **Docker:**
+    -   `docker pull ghcr.io/<repo>:latest`
+    -   `docker run -d -v $(pwd)/config.toml:/app/config.toml -v $(pwd)/hath_monitor.db:/app/hath_monitor.db ghcr.io/<repo>:latest`
 
 ## Development Conventions
 
--   **Language:** Python 3 (Strictly avoid third-party dependencies where possible).
--   **Scraping:** Use `urllib.request` with custom headers (User-Agent) and SSL context handling for stability.
--   **State Management:** Always query the database to compare "last seen" status before sending a notification to avoid redundant alerts.
+-   **Language:** Python 3 (Minimize third-party dependencies).
+-   **Multilingual Support:** All user-facing strings are localized in `I18N` (zh, zh-hant, en, ja, ko, es, fr, ru, de, ar, he).
+-   **Scraping:** Use `urllib.request` with custom headers and SSL context handling for stability.
+-   **State Management:** Query SQLite to avoid redundant notifications.
 -   **Notifications:**
-    -   Standardize on Chinese for user-facing push content.
-    -   Format: Use `➔` for status transitions (e.g., `离线 ➔ 在线`).
-    -   First line of the notification body should contain the most critical info (ID and current status).
--   **Error Handling:** Fail gracefully during network requests to prevent the daemon from crashing; log errors to `hath_monitor.log`.
--   **Versioning:** Follow Semantic Versioning for the script itself (current: 1.3.0).
+    -   Standardize on localized strings via `get_t(lang, key)`.
+    -   Format: Use `➔` for status transitions.
+-   **Error Handling:** Isolation via `try-except` blocks for each check module to ensure overall daemon stability.
+-   **Versioning:** Current version 1.4.0.
