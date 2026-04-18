@@ -1,18 +1,18 @@
 <p align="center">
-  <img src="https://socialify.git.ci/cololi/hath-version-monitor/image?description=1&font=Inter&forks=1&issues=1&language=1&name=1&owner=1&pattern=Circuit%20Board&pulls=1&stargazers=1&theme=Auto" alt="hath-version-monitor" width="640" />
+  <img src="https://socialify.git.ci/cololi/hath-monitor/image?description=1&font=Source+Code+Pro&forks=1&issues=1&name=1&pattern=Plus&pulls=1&stargazers=1&theme=Auto" alt="hath-monitor" width="640" />
 </p>
 
 <h1 align="center">Hentai@Home Version & Status Monitor</h1>
 
 <p align="center">
-  <a href="https://github.com/cololi/hath-version-monitor/releases">
-    <img src="https://img.shields.io/github/v/release/cololi/hath-version-monitor?style=flat-square&color=blue" alt="release">
+  <a href="https://github.com/cololi/hath-monitor/releases">
+    <img src="https://img.shields.io/github/v/release/cololi/hath-monitor?style=flat-square&color=blue" alt="release">
   </a>
-  <a href="https://github.com/cololi/hath-version-monitor/pkgs/container/hath-monitor">
+  <a href="https://github.com/cololi/hath-monitor/pkgs/container/hath-monitor">
     <img src="https://img.shields.io/badge/docker-ghcr.io-blue?style=flat-square&logo=docker" alt="docker">
   </a>
-  <a href="https://github.com/cololi/hath-version-monitor/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/cololi/hath-version-monitor?style=flat-square&color=green" alt="license">
+  <a href="https://github.com/cololi/hath-monitor/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/cololi/hath-monitor?style=flat-square&color=green" alt="license">
   </a>
   <a href="https://www.python.org/">
     <img src="https://img.shields.io/badge/python-3.11%2B-blue?style=flat-square&logo=python" alt="python">
@@ -20,10 +20,10 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/cololi/hath-version-monitor"><strong>[GitHub]</strong></a> |
-  <a href="https://github.com/cololi/hath-version-monitor/releases"><strong>[Releases]</strong></a> |
-  <a href="https://github.com/cololi/hath-version-monitor/pkgs/container/hath-monitor"><strong>[Docker Hub]</strong></a> |
-  <a href="https://github.com/cololi/hath-version-monitor/blob/main/LICENSE"><strong>[License]</strong></a>
+  <a href="https://github.com/cololi/hath-monitor"><strong>[GitHub]</strong></a> |
+  <a href="https://github.com/cololi/hath-monitor/releases"><strong>[Releases]</strong></a> |
+  <a href="https://github.com/cololi/hath-monitor/pkgs/container/hath-monitor"><strong>[Docker Hub]</strong></a> |
+  <a href="https://github.com/cololi/hath-monitor/blob/main/LICENSE"><strong>[License]</strong></a>
 </p>
 
 <p align="center">
@@ -55,7 +55,7 @@ Quickly deploy the monitor in a containerized environment:
 
 1. **Get Config**: Download the template.
    ```bash
-   curl -L https://raw.githubusercontent.com/cololi/hath-version-monitor/main/config.toml.example -o config.toml
+   curl -L https://raw.githubusercontent.com/cololi/hath-monitor/main/config.toml.example -o config.toml
    ```
 2. **Configure**: Add your EH cookies and notification tokens to `config.toml`.
 3. **Run**:
@@ -74,7 +74,7 @@ Run directly on your host machine:
 
 1. **Clone**:
    ```bash
-   git clone https://github.com/cololi/hath-version-monitor.git && cd hath-version-monitor
+   git clone https://github.com/cololi/hath-monitor.git && cd hath-monitor
    ```
 2. **Initialize**: Generate default configuration.
    ```bash

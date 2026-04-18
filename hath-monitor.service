@@ -5,8 +5,8 @@ Wants=network-online.target
 
 [Service]
 Type=simple
-WorkingDirectory=/opt/hath-version-monitor
-ExecStart=/usr/bin/python3 /opt/hath-version-monitor/hath_monitor.py --daemon
+WorkingDirectory=/opt/hath-monitor
+ExecStart=/usr/bin/python3 /opt/hath-monitor/hath_monitor.py --daemon
 Restart=on-failure
 RestartSec=60
 StandardOutput=journal
@@ -16,7 +16,7 @@ StandardError=journal
 NoNewPrivileges=yes
 ProtectSystem=strict
 ProtectHome=read-only
-ReadWritePaths=/opt/hath-version-monitor
+ReadWritePaths=/opt/hath-monitor
 PrivateTmp=yes
 
 [Install]

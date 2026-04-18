@@ -1,18 +1,18 @@
 <p align="center">
-  <img src="https://socialify.git.ci/cololi/hath-version-monitor/image?description=1&font=Inter&forks=1&issues=1&language=1&name=1&owner=1&pattern=Circuit%20Board&pulls=1&stargazers=1&theme=Auto" alt="hath-version-monitor" width="640" />
+  <img src="https://socialify.git.ci/cololi/hath-monitor/image?description=1&font=Source+Code+Pro&forks=1&issues=1&name=1&pattern=Plus&pulls=1&stargazers=1&theme=Auto" alt="hath-monitor" width="640" />
 </p>
 
 <h1 align="center">Hentai@Home Versions- & Statusmonitor</h1>
 
 <p align="center">
-  <a href="https://github.com/cololi/hath-version-monitor/releases">
-    <img src="https://img.shields.io/github/v/release/cololi/hath-version-monitor?style=flat-square&color=blue" alt="release">
+  <a href="https://github.com/cololi/hath-monitor/releases">
+    <img src="https://img.shields.io/github/v/release/cololi/hath-monitor?style=flat-square&color=blue" alt="release">
   </a>
-  <a href="https://github.com/cololi/hath-version-monitor/pkgs/container/hath-monitor">
+  <a href="https://github.com/cololi/hath-monitor/pkgs/container/hath-monitor">
     <img src="https://img.shields.io/badge/docker-ghcr.io-blue?style=flat-square&logo=docker" alt="docker">
   </a>
-  <a href="https://github.com/cololi/hath-version-monitor/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/cololi/hath-version-monitor?style=flat-square&color=green" alt="license">
+  <a href="https://github.com/cololi/hath-monitor/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/cololi/hath-monitor?style=flat-square&color=green" alt="license">
   </a>
   <a href="https://www.python.org/">
     <img src="https://img.shields.io/badge/python-3.11%2B-blue?style=flat-square&logo=python" alt="python">
@@ -49,7 +49,7 @@ Kopieren Sie diese Befehle und fügen Sie sie ein, um sofort zu beginnen:
 
 ```bash
 # 1. Laden Sie die Konfigurationsvorlage herunter
-curl -L https://raw.githubusercontent.com/cololi/hath-version-monitor/main/config.toml.example -o config.toml
+curl -L https://raw.githubusercontent.com/cololi/hath-monitor/main/config.toml.example -o config.toml
 
 # 2. Bearbeiten Sie die config.toml mit Ihren EH-Cookies und Benachrichtigungs-Token
 # (Verwenden Sie Ihren bevorzugten Editor: vi, nano oder Notepad)
@@ -70,7 +70,7 @@ Wenn Sie es vorziehen, es direkt mit Python (3.11+) auszuführen:
 
 ```bash
 # 1. Klonen Sie das Repository und wechseln Sie in das Verzeichnis
-git clone https://github.com/cololi/hath-version-monitor.git && cd hath-version-monitor
+git clone https://github.com/cololi/hath-monitor.git && cd hath-monitor
 
 # 2. Erstellen Sie die Standardkonfigurationsdatei
 python3 hath_monitor.py
