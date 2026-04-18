@@ -24,7 +24,7 @@
 </p>
 
 <p align="center">
-  <a href="../README.md">English</a> | <a href="README.zh-CN.md">简体中文</a> | <a href="README.zh-TW.md">繁體中文</a>
+  <a href="../README.md">English</a> | <a href="README.zh-CN.md">简体中文</a> | <a href="README.zh-TW.md">繁體中文</a> | <a href="README.ja.md">日本語</a> | <a href="README.ko.md">한국어</a> | <a href="README.es.md">Español</a> | Français | <a href="README.ru.md">Русский</a> | <a href="README.de.md">Deutsch</a> | <a href="README.ar.md">العربية</a> | <a href="README.he.md">עברית</a>
 </p>
 
 ---
@@ -111,7 +111,7 @@ Le fichier `config.toml` est divisé en trois sections principales : `[monitor]`
 | Drapeau | Description |
 | :--- | :--- |
 | `--daemon` | Exécute le script en arrière-plan en tant que démon. |
-| `--verbose` | Active la journalisation de débogage détaillée. |
+| `--verbose / -v` | Active la journalisation de débogage détaillée. |
 | `--history` | Affiche les 20 dernières entrées de l'historique de statut. |
 | `--push-all` | Envoie immédiatement un rapport de statut complet à tous les canaux activés. |
 | `--config PATH` | Spécifie un chemin personnalisé pour le fichier de configuration. |
@@ -121,4 +121,4 @@ Le fichier `config.toml` est divisé en trois sections principales : `[monitor]`
 ## 📜 Licence & Remerciements
 
 *   **Licence** : Ce projet est sous [Licence MIT](LICENSE).
-*   **Crédits** : Remerciements particuliers à la communauté Hentai@Home et aux développeurs des différents services de notification supportés.
+*   **Crédits**: Remerciements spéciaux à la communauté Hentai@Home et aux développeurs des différents services de notification pris en charge.

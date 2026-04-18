@@ -24,7 +24,7 @@
 </p>
 
 <p align="center">
-  <a href="../README.md">English</a> | <a href="README.zh-CN.md">简体中文</a> | <a href="README.zh-TW.md">繁體中文</a>
+  <a href="../README.md">English</a> | <a href="README.zh-CN.md">简体中文</a> | <a href="README.zh-TW.md">繁體中文</a> | 日本語 | <a href="README.ko.md">한국어</a> | <a href="README.es.md">Español</a> | <a href="README.fr.md">Français</a> | <a href="README.ru.md">Русский</a> | <a href="README.de.md">Deutsch</a> | <a href="README.ar.md">العربية</a> | <a href="README.he.md">עברית</a>
 </p>
 
 ---
@@ -111,7 +111,7 @@ python3 hath_monitor.py --daemon
 | フラグ | 説明 |
 | :--- | :--- |
 | `--daemon` | スクリプトをデーモンとしてバックグラウンドで実行します。 |
-| `--verbose` | 詳細なデバッグログを有効にします。 |
+| `--verbose / -v` | 詳細なデバッグログを有効にします。 |
 | `--history` | ステータス履歴から最新の 20 件を表示します。 |
 | `--push-all` | 有効なすべてのチャンネルに、フルステータスレポートを即座に送信します。 |
 | `--config PATH` | 設定ファイルのカスタムパスを指定します。 |

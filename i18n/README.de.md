@@ -24,7 +24,7 @@
 </p>
 
 <p align="center">
-  <a href="../README.md">English</a> | <a href="README.zh-CN.md">简体中文</a> | <a href="README.zh-TW.md">繁體中文</a>
+  <a href="../README.md">English</a> | <a href="README.zh-CN.md">简体中文</a> | <a href="README.zh-TW.md">繁體中文</a> | <a href="README.ja.md">日本語</a> | <a href="README.ko.md">한국어</a> | <a href="README.es.md">Español</a> | <a href="README.fr.md">Français</a> | <a href="README.ru.md">Русский</a> | Deutsch | <a href="README.ar.md">العربية</a> | <a href="README.he.md">עברית</a>
 </p>
 
 ---
@@ -111,7 +111,7 @@ Die Datei `config.toml` ist in drei Hauptabschnitte unterteilt: `[monitor]`, `[n
 | Flag | Beschreibung |
 | :--- | :--- |
 | `--daemon` | Führt das Skript im Hintergrund als Daemon aus. |
-| `--verbose` | Aktiviert detaillierte Debug-Protokollierung. |
+| `--verbose / -v` | Aktiviert detaillierte Debug-Protokollierung. |
 | `--history` | Zeigt die letzten 20 Einträge aus dem Statusverlauf an. |
 | `--push-all` | Sendet sofort einen vollständigen Statusbericht an alle aktivierten Kanäle. |
 | `--config PATH` | Gibt einen benutzerdefinierten Pfad für die Konfigurationsdatei an. |

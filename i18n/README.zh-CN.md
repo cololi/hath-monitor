@@ -24,7 +24,7 @@
 </p>
 
 <p align="center">
-  <a href="../README.md">English</a> | 简体中文 | <a href="README.zh-TW.md">繁體中文</a>
+  <a href="../README.md">English</a> | 简体中文 | <a href="README.zh-TW.md">繁體中文</a> | <a href="README.ja.md">日本語</a> | <a href="README.ko.md">한국어</a> | <a href="README.es.md">Español</a> | <a href="README.fr.md">Français</a> | <a href="README.ru.md">Русский</a> | <a href="README.de.md">Deutsch</a> | <a href="README.ar.md">العربية</a> | <a href="README.he.md">עברית</a>
 </p>
 
 ---
@@ -110,7 +110,7 @@ python3 hath_monitor.py --daemon
 | 选项 | 描述 |
 | :--- | :--- |
 | `--daemon` | 在后台以守护进程模式运行。 |
-| `--verbose` | 启用详细的调试日志输出。 |
+| `--verbose / -v` | 启用详细的调试日志输出。 |
 | `--history` | 显示数据库中最近的 20 条监控历史记录。 |
 | `--push-all` | 立即向所有启用的渠道推送一次完整的状态报告。 |
 | `--config PATH` | 指定自定义配置文件路径。 |

@@ -20,105 +20,100 @@
 </p>
 
 <p align="center">
-  <strong>A lightweight, zero-dependency Python tool to monitor H@H client updates and real-time status.</strong>
+  <a href="https://github.com/cololi/hath-version-monitor"><strong>[GitHub]</strong></a> |
+  <a href="https://github.com/cololi/hath-version-monitor/releases"><strong>[Releases]</strong></a> |
+  <a href="https://github.com/cololi/hath-version-monitor/pkgs/container/hath-monitor"><strong>[Docker Hub]</strong></a> |
+  <a href="https://github.com/cololi/hath-version-monitor/blob/main/LICENSE"><strong>[License]</strong></a>
 </p>
 
 <p align="center">
-  English | <a href="i18n/README.zh-CN.md">简体中文</a> | <a href="i18n/README.zh-TW.md">繁體中文</a>
+  English | <a href="i18n/README.zh-CN.md">简体中文</a> | <a href="i18n/README.zh-TW.md">繁體中文</a> | <a href="i18n/README.ja.md">日本語</a> | <a href="i18n/README.ko.md">한국어</a> | <a href="i18n/README.es.md">Español</a> | <a href="i18n/README.fr.md">Français</a> | <a href="i18n/README.ru.md">Русский</a> | <a href="i18n/README.de.md">Deutsch</a> | <a href="i18n/README.ar.md">العربية</a> | <a href="i18n/README.he.md">עברית</a>
 </p>
 
 ---
 
-## 🚀 Key Features
-
-*   **🔍 Multi-Source Version Tracking**: Monitors Official Java client (`repo.e-hentai.org`), `hath-rust` (GitHub Releases), and the E-Hentai H@H management page for version changes.
-*   **📡 Real-time Status Monitoring**: Tracks online/offline status, IP changes, trust levels, hitrate, and quality for all your H@H clients.
-*   **📅 Daily Quota Alerts**: Automatic daily notifications for your Free Archive Quota.
-*   **🔔 Rich Notifications**: Supports 10+ channels including Discord (Rich Embeds), Telegram, Slack, Bark, Gotify, Matrix, and more.
-*   **🌍 Multi-language Support**: Fully localized notifications in 11 languages.
-*   **🛡️ Zero Dependencies**: Built strictly with Python 3.11+ standard libraries. No `pip install` required.
-*   **🐳 Container Ready**: Optimized Docker images for easy deployment.
+> **H@H Version & Status Monitor** is a lightweight, zero-dependency Python tool designed to keep you updated on your Hentai@Home clients. It tracks official updates, repository releases, and provides real-time status notifications across various channels.
 
 ---
 
-## ⚙️ Quick Start
+## 🚀 Highlights
+
+- **🔍 Multi-Source Tracking**: Simultaneously monitors Official Java client (`repo.e-hentai.org`), `hath-rust` (GitHub), and E-Hentai management pages.
+- **📡 Real-time Monitoring**: Instant alerts for online/offline status, IP changes, trust levels, hitrate, and quality.
+- **📅 Daily Quota Alerts**: Get automated daily summaries of your Free Archive Quota.
+- **🌍 Global Support**: Fully localized notifications available in **11 languages**.
+- **🔔 10+ Notify Channels**: Native support for Discord, Telegram, Slack, Bark, Gotify, Matrix, and more.
+- **🛡️ Minimalist Build**: Written in pure Python 3.11+ standard library. Zero `pip install` required.
+
+---
+
+## ⚙️ Getting Started
 
 ### 🐳 Using Docker (Recommended)
 
-Copy and paste these commands to get started immediately:
+Quickly deploy the monitor in a containerized environment:
 
-```bash
-# 1. Download the configuration template
-curl -L https://raw.githubusercontent.com/cololi/hath-version-monitor/main/config.toml.example -o config.toml
+1. **Get Config**: Download the template.
+   ```bash
+   curl -L https://raw.githubusercontent.com/cololi/hath-version-monitor/main/config.toml.example -o config.toml
+   ```
+2. **Configure**: Add your EH cookies and notification tokens to `config.toml`.
+3. **Run**:
+   ```bash
+   docker run -d \
+     --name hath-monitor \
+     --restart unless-stopped \
+     -v $(pwd)/config.toml:/app/config.toml \
+     -v $(pwd)/hath_monitor.db:/app/hath_monitor.db \
+     ghcr.io/cololi/hath-monitor:latest
+   ```
 
-# 2. Edit the config.toml with your EH cookies and notification tokens
-# (Use your favorite editor: vi, nano, or notepad)
-vi config.toml 
+### 🐍 Manual Setup
 
-# 3. Start the monitor container
-docker run -d \
-  --name hath-monitor \
-  --restart unless-stopped \
-  -v $(pwd)/config.toml:/app/config.toml \
-  -v $(pwd)/hath_monitor.db:/app/hath_monitor.db \
-  ghcr.io/cololi/hath-monitor:latest
-```
+Run directly on your host machine:
 
-### 🐍 Manual Installation
-
-If you prefer running it directly with Python (3.11+):
-
-```bash
-# 1. Clone the repository and enter the directory
-git clone https://github.com/cololi/hath-version-monitor.git && cd hath-version-monitor
-
-# 2. Generate the default configuration file
-python3 hath_monitor.py
-
-# 3. Edit the generated config.toml
-vi config.toml
-
-# 4. Start the monitor in daemon mode
-python3 hath_monitor.py --daemon
-```
+1. **Clone**:
+   ```bash
+   git clone https://github.com/cololi/hath-version-monitor.git && cd hath-version-monitor
+   ```
+2. **Initialize**: Generate default configuration.
+   ```bash
+   python3 hath_monitor.py
+   ```
+3. **Start**:
+   ```bash
+   python3 hath_monitor.py --daemon
+   ```
 
 ---
 
-## 🛠️ Configuration
+## 🛠️ Configuration & Commands
 
-The `config.toml` file is divided into three main sections: `[monitor]`, `[notify]`, and `[system]`.
-
-### Notification Channels
-
-| Channel | Key Requirement |
-| :--- | :--- |
-| **Bark** | `bark_url` |
-| **Telegram** | `telegram_bot_token`, `telegram_chat_id` |
-| **Discord** | `discord_webhook` |
-| **Slack** | `slack_webhook` |
-| **Pushover** | `pushover_user_key`, `pushover_api_token` |
-| **Gotify** | `gotify_url`, `gotify_token` |
-| **Matrix** | `matrix_url`, `matrix_token`, `matrix_room_id` |
-| **PushPlus** | `pushplus_token` |
-| **PushDeer** | `pushdeer_key` |
-| **DingTalk** | `dingtalk_access_token` |
-| **Webhooks** | `webhooks = ["url1", "url2"]` |
-
----
-
-## ⌨️ CLI Options
+### CLI Options
 
 | Flag | Description |
 | :--- | :--- |
-| `--daemon` | Run the script in the background as a daemon. |
-| `--verbose` | Enable detailed debug logging. |
-| `--history` | Display the last 20 entries from the status history. |
-| `--push-all` | Immediately push a full status report to all enabled channels. |
-| `--config PATH` | Specify a custom path for the configuration file. |
+| `--daemon` | Run the script in the background as a persistent service. |
+| `--verbose / -v` | Enable detailed debug logging for troubleshooting. |
+| `--history` | View the last 20 events recorded in the local database. |
+| `--push-all` | Trigger an immediate status report to all enabled channels. |
+| `--config PATH` | Specify a custom path for the `config.toml` file. |
+
+### Supported Channels
+
+| Channel | Key Parameters |
+| :--- | :--- |
+| **Discord** | `discord_webhook` |
+| **Telegram** | `telegram_bot_token`, `chat_id` |
+| **Bark** | `bark_url` |
+| **Slack** | `slack_webhook` |
+| **Gotify** | `gotify_url`, `token` |
+| **Pushover** | `user_key`, `api_token` |
+| **Webhooks** | `webhooks = ["url1", "url2"]` |
 
 ---
 
 ## 📜 License & Acknowledgments
 
-*   **License**: This project is licensed under the [MIT License](LICENSE).
-*   **Credits**: Special thanks to the Hentai@Home community and the developers of the various notification services supported.
+*   **License**: Distributed under the [MIT License](LICENSE).
+*   **Acknowledgments**: Special thanks to the Hentai@Home community and all supported notification service providers.

@@ -24,7 +24,7 @@
 </p>
 
 <p align="center">
-  <a href="../README.md">English</a> | <a href="README.zh-CN.md">简体中文</a> | <a href="README.zh-TW.md">繁體中文</a>
+  <a href="../README.md">English</a> | <a href="README.zh-CN.md">简体中文</a> | <a href="README.zh-TW.md">繁體中文</a> | <a href="README.ja.md">日本語</a> | 한국어 | <a href="README.es.md">Español</a> | <a href="README.fr.md">Français</a> | <a href="README.ru.md">Русский</a> | <a href="README.de.md">Deutsch</a> | <a href="README.ar.md">العربية</a> | <a href="README.he.md">עברית</a>
 </p>
 
 ---
@@ -111,7 +111,7 @@ python3 hath_monitor.py --daemon
 | 플래그 | 설명 |
 | :--- | :--- |
 | `--daemon` | 스크립트를 백그라운드에서 데몬으로 실행합니다. |
-| `--verbose` | 상세 디버그 로깅을 활성화합니다. |
+| `--verbose / -v` | 상세 디버그 로깅을 활성화합니다. |
 | `--history` | 상태 기록에서 마지막 20개 항목을 표시합니다. |
 | `--push-all` | 활성화된 모든 채널에 즉시 전체 상태 보고서를 푸시합니다. |
 | `--config PATH` | 설정 파일의 사용자 정의 경로를 지정합니다. |

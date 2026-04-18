@@ -24,7 +24,7 @@
 </p>
 
 <p align="center">
-  <a href="../README.md">English</a> | <a href="README.zh-CN.md">简体中文</a> | <a href="README.zh-TW.md">繁體中文</a>
+  <a href="../README.md">English</a> | <a href="README.zh-CN.md">简体中文</a> | <a href="README.zh-TW.md">繁體中文</a> | <a href="README.ja.md">日本語</a> | <a href="README.ko.md">한국어</a> | Español | <a href="README.fr.md">Français</a> | <a href="README.ru.md">Русский</a> | <a href="README.de.md">Deutsch</a> | <a href="README.ar.md">العربية</a> | <a href="README.he.md">עברית</a>
 </p>
 
 ---
@@ -111,7 +111,7 @@ El archivo `config.toml` se divide en tres secciones principales: `[monitor]`, `
 | Bandera | Descripción |
 | :--- | :--- |
 | `--daemon` | Ejecuta el script en segundo plano como un demonio. |
-| `--verbose` | Habilita el registro de depuración detallado. |
+| `--verbose / -v` | Habilita el registro de depuración detallado. |
 | `--history` | Muestra las últimas 20 entradas del historial de estado. |
 | `--push-all` | Envía inmediatamente un informe de estado completo a todos los canales habilitados. |
 | `--config PATH` | Especifica una ruta personalizada para el archivo de configuración. |

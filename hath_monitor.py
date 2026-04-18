@@ -39,10 +39,10 @@ I18N = {
         "address": "地址",
         "version": "版本",
         "speed": "带宽",
-        "trust": "信任",
+        "trust": "信任度",
         "quality": "质量",
-        "hitrate": "点击",
-        "hathrate": "产率",
+        "hitrate": "点击率",
+        "hathrate": "Hath 产率",
         "served": "已传",
         "last_seen": "最后"
     },
@@ -68,10 +68,10 @@ I18N = {
         "address": "地址",
         "version": "版本",
         "speed": "頻寬",
-        "trust": "信任",
+        "trust": "信任度",
         "quality": "質量",
-        "hitrate": "點擊",
-        "hathrate": "產率",
+        "hitrate": "點擊率",
+        "hathrate": "Hath 產率",
         "served": "已傳",
         "last_seen": "最後"
     },
@@ -736,19 +736,21 @@ def main():
     parser.add_argument("--verbose", "-v", action="store_true", help="显示详细调试信息")
     parser.add_argument("--history", action="store_true", help="查看最近监控记录")
     parser.add_argument("--push-all", action="store_true", help="强制全量推送当前状态")
+    parser.add_argument("--config", help="指定配置文件路径")
     args = parser.parse_args()
 
     logging.basicConfig(level=logging.DEBUG if args.verbose else logging.INFO,
                         format="[%(asctime)s] %(levelname)s %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
 
-    if not CONFIG_PATH.exists():
-        logger.info("配置文件 config.toml 不存在，正在创建默认配置模板...")
-        with open(CONFIG_PATH, "w", encoding="utf-8") as f:
+    cfg_path = Path(args.config) if args.config else CONFIG_PATH
+    if not cfg_path.exists():
+        logger.info("配置文件 %s 不存在，正在创建默认配置模板...", cfg_path)
+        with open(cfg_path, "w", encoding="utf-8") as f:
             f.write(DEFAULT_CONFIG_TEXT)
-        logger.info("已创建 config.toml，请编辑并配置相关参数。")
+        logger.info("已创建 %s，请编辑并配置相关参数。", cfg_path)
         return
 
-    with open(CONFIG_PATH, "rb") as f: config = tomllib.load(f)
+    with open(cfg_path, "rb") as f: config = tomllib.load(f)
 
     scfg = config.get("system", {})
     db_path = scfg.get("db_path") or DB_PATH_DEFAULT
