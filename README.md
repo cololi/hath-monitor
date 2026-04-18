@@ -125,9 +125,27 @@ The `config.toml` file is divided into three main sections: `[monitor]`, `[notif
 
 ---
 
-## 🤝 Acknowledgements
+## 👥 Contributors
 
-- This project was developed with the assistance of [Gemini AI](https://gemini.google.com/).
-- Special thanks to the Hentai@Home community.
+<p align="center">
+  <table align="center">
+    <tr>
+      <td align="center">
+        <a href="https://github.com/cololi">
+          <img src="https://github.com/cololi.png" width="100px;" alt="Cololi"/><br />
+          <sub><b>Cololi</b></sub>
+        </a><br />
+        🚀 <b>Lead Developer</b>
+      </td>
+      <td align="center">
+        <a href="https://gemini.google.com/">
+          <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/google-gemini-icon.png" width="100px;" alt="Gemini AI"/><br />
+          <sub><b>Gemini AI</b></sub>
+        </a><br />
+        🤖 <b>AI Assistant</b>
+      </td>
+    </tr>
+  </table>
+</p>
 
 <p align="center">Made with ❤️ for the H@H Community</p>
