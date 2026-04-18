@@ -9,6 +9,7 @@ COPY hath_monitor.py .
 COPY hath-monitor.service .
 COPY LICENSE .
 COPY README.md .
+COPY i18n/ ./i18n/
 
 # Create a volume for the database and config to persist data
 # Users should mount their config.toml and hath_monitor.db to /app
