@@ -122,30 +122,3 @@ python3 hath_monitor.py --daemon
 
 *   **רישיון**: פרויקט זה מופץ תחת [רישיון MIT](LICENSE).
 *   **קרדיטים**: תודה מיוחדת לקהילת Hentai@Home ולמפתחי שירותי ההתראות השונים הנתמכים.
-
----
-
-## 👥 תורמים
-
-<p align="center">
-  <table align="center">
-    <tr>
-      <td align="center">
-        <a href="https://github.com/cololi">
-          <img src="https://github.com/cololi.png" width="100px;" alt="Cololi"/><br />
-          <sub><b>Cololi</b></sub>
-        </a><br />
-        🚀 <b>מפתח ראשי</b>
-      </td>
-      <td align="center">
-        <a href="https://gemini.google.com/">
-          <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/google-gemini-icon.png" width="100px;" alt="Gemini AI"/><br />
-          <sub><b>Gemini AI</b></sub>
-        </a><br />
-        🤖 <b>עוזר בינה מלאכותית</b>
-      </td>
-    </tr>
-  </table>
-</p>
-
-<p align="center">נעשה ב-❤️ עבור קהילת H@H</p>

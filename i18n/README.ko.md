@@ -122,30 +122,3 @@ python3 hath_monitor.py --daemon
 
 *   **라이선스**: 이 프로젝트는 [MIT 라이선스](LICENSE)에 따라 라이선스가 부여됩니다.
 *   **크레딧**: Hentai@Home 커뮤니티와 지원되는 다양한 알림 서비스 개발자들에게 특별한 감사를 드립니다.
-
----
-
-## 👥 기여자
-
-<p align="center">
-  <table align="center">
-    <tr>
-      <td align="center">
-        <a href="https://github.com/cololi">
-          <img src="https://github.com/cololi.png" width="100px;" alt="Cololi"/><br />
-          <sub><b>Cololi</b></sub>
-        </a><br />
-        🚀 <b>리드 개발자</b>
-      </td>
-      <td align="center">
-        <a href="https://gemini.google.com/">
-          <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/google-gemini-icon.png" width="100px;" alt="Gemini AI"/><br />
-          <sub><b>Gemini AI</b></sub>
-        </a><br />
-        🤖 <b>AI 어시스턴트</b>
-      </td>
-    </tr>
-  </table>
-</p>
-
-<p align="center">H@H 커뮤니티를 위해 ❤️로 제작되었습니다.</p>

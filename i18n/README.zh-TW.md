@@ -121,30 +121,3 @@ python3 hath_monitor.py --daemon
 
 *   **許可協議**: 本項目基於 [MIT License](LICENSE) 開源。
 *   **致謝**: 特別感謝 Hentai@Home 社區以及本项目所支持的各个推送服务的開發者。
-
----
-
-## 👥 貢獻者
-
-<p align="center">
-  <table align="center">
-    <tr>
-      <td align="center">
-        <a href="https://github.com/cololi">
-          <img src="https://github.com/cololi.png" width="100px;" alt="Cololi"/><br />
-          <sub><b>Cololi</b></sub>
-        </a><br />
-        🚀 <b>項目主導</b>
-      </td>
-      <td align="center">
-        <a href="https://gemini.google.com/">
-          <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/google-gemini-icon.png" width="100px;" alt="Gemini AI"/><br />
-          <sub><b>Gemini AI</b></sub>
-        </a><br />
-        🤖 <b>AI 助手</b>
-      </td>
-    </tr>
-  </table>
-</p>
-
-<p align="center">為 H@H 社區精心打造 ❤️</p>

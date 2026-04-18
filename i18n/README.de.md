@@ -122,30 +122,3 @@ Die Datei `config.toml` ist in drei Hauptabschnitte unterteilt: `[monitor]`, `[n
 
 *   **Lizenz**: Dieses Projekt ist unter der [MIT-Lizenz](LICENSE) lizenziert.
 *   **Credits**: Besonderer Dank geht an die Hentai@Home-Community und die Entwickler der verschiedenen unterstützten Benachrichtigungsdienste.
-
----
-
-## 👥 Mitwirkende
-
-<p align="center">
-  <table align="center">
-    <tr>
-      <td align="center">
-        <a href="https://github.com/cololi">
-          <img src="https://github.com/cololi.png" width="100px;" alt="Cololi"/><br />
-          <sub><b>Cololi</b></sub>
-        </a><br />
-        🚀 <b>Hauptentwickler</b>
-      </td>
-      <td align="center">
-        <a href="https://gemini.google.com/">
-          <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/google-gemini-icon.png" width="100px;" alt="Gemini AI"/><br />
-          <sub><b>Gemini AI</b></sub>
-        </a><br />
-        🤖 <b>KI-Assistent</b>
-      </td>
-    </tr>
-  </table>
-</p>
-
-<p align="center">Mit ❤️ für die H@H-Community gemacht</p>
