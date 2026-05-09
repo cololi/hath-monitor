@@ -49,16 +49,16 @@
 
 ```bash
 # 1. 下載配置模板
-curl -L https://raw.githubusercontent.com/cololi/hath-monitor/main/config.toml.example -o config.toml
+curl -L https://raw.githubusercontent.com/cololi/hath-monitor/main/.env.example -o .env
 
-# 2. 使用您喜歡的編輯器 (vi, nano 或記事本) 修改 config.toml，配置 EH Cookies 和推送 Token
-vi config.toml 
+# 2. 使用您喜歡的編輯器 (vi, nano 或記事本) 修改 .env，配置 EH Cookies 和推送 Token
+vi .env 
 
 # 3. 啟動監控容器
 docker run -d \
   --name hath-monitor \
   --restart unless-stopped \
-  -v $(pwd)/config.toml:/app/config.toml \
+  --env-file .env \
   -v $(pwd)/hath_monitor.db:/app/hath_monitor.db \
   ghcr.io/cololi/hath-monitor:latest
 ```
@@ -71,11 +71,11 @@ docker run -d \
 # 1. 克隆倉庫並進入目錄
 git clone https://github.com/cololi/hath-monitor.git && cd hath-monitor
 
-# 2. 生成默認配置文件
-python3 hath_monitor.py
+# 2. 複製環境變量模板
+cp .env.example .env
 
-# 3. 修改生成的 config.toml
-vi config.toml
+# 3. 修改 .env 配置文件
+vi .env
 
 # 4. 以守護進程模式啟動監控
 python3 hath_monitor.py --daemon
@@ -85,23 +85,23 @@ python3 hath_monitor.py --daemon
 
 ## 🛠️ 配置說明
 
-`config.toml` 文件主要分為三個部分：`[monitor]` (監控配置), `[notify]` (推送配置), 和 `[system]` (系統配置)。
+查看 [.env.example](../.env.example) 獲取完整的環境變量列表。
 
 ### 推送渠道支持
 
 | 渠道 | 必要參數 |
 | :--- | :--- |
-| **Bark** | `bark_url` |
-| **Telegram** | `telegram_bot_token`, `telegram_chat_id` |
-| **Discord** | `discord_webhook` |
-| **Slack** | `slack_webhook` |
-| **Pushover** | `pushover_user_key`, `pushover_api_token` |
-| **Gotify** | `gotify_url`, `gotify_token` |
-| **Matrix** | `matrix_url`, `matrix_token`, `matrix_room_id` |
-| **PushPlus** | `pushplus_token` |
-| **PushDeer** | `pushdeer_key` |
-| **DingTalk** | `dingtalk_access_token` |
-| **Webhooks** | `webhooks = ["url1", "url2"]` |
+| **Bark** | `BARK_URL` |
+| **Telegram** | `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` |
+| **Discord** | `DISCORD_WEBHOOK` |
+| **Slack** | `SLACK_WEBHOOK` |
+| **Pushover** | `PUSHOVER_USER_KEY`, `PUSHOVER_API_TOKEN` |
+| **Gotify** | `GOTIFY_URL`, `GOTIFY_TOKEN` |
+| **Matrix** | `MATRIX_URL`, `MATRIX_TOKEN`, `MATRIX_ROOM_ID` |
+| **PushPlus** | `PUSHPLUS_TOKEN` |
+| **PushDeer** | `PUSHDEER_KEY` |
+| **DingTalk** | `DINGTALK_ACCESS_TOKEN` |
+| **Webhooks** | `WEBHOOKS` |
 
 ---
 
@@ -111,9 +111,7 @@ python3 hath_monitor.py --daemon
 | :--- | :--- |
 | `--daemon` | 在後台以守護進程模式運行。 |
 | `--verbose / -v` | 啟用詳細的調試日誌輸出。 |
-| `--history` | 顯示資料庫中最近的 20 條監控歷史記錄。 |
 | `--push-all` | 立即向所有啟用的渠道推送一次完整的狀態報告。 |
-| `--config PATH` | 指定自定義配置文件路徑。 |
 
 ---
 

@@ -49,17 +49,17 @@ Copiez et collez ces commandes pour commencer immédiatement :
 
 ```bash
 # 1. Téléchargez le modèle de configuration
-curl -L https://raw.githubusercontent.com/cololi/hath-monitor/main/config.toml.example -o config.toml
+curl -L https://raw.githubusercontent.com/cololi/hath-monitor/main/.env.example -o .env
 
-# 2. Modifiez le config.toml avec vos cookies EH et vos jetons de notification
+# 2. Modifiez le .env avec vos cookies EH et vos jetons de notification
 # (Utilisez votre éditeur préféré : vi, nano ou bloc-notes)
-vi config.toml 
+vi .env 
 
 # 3. Démarrez le conteneur du moniteur
 docker run -d \
   --name hath-monitor \
   --restart unless-stopped \
-  -v $(pwd)/config.toml:/app/config.toml \
+  --env-file .env \
   -v $(pwd)/hath_monitor.db:/app/hath_monitor.db \
   ghcr.io/cololi/hath-monitor:latest
 ```
@@ -72,11 +72,11 @@ Si vous préférez l'exécuter directement avec Python (3.11+) :
 # 1. Clonez le dépôt et entrez dans le répertoire
 git clone https://github.com/cololi/hath-monitor.git && cd hath-monitor
 
-# 2. Générez le fichier de configuration par défaut
-python3 hath_monitor.py
+# 2. Copiez le modèle de variables d'environnement
+cp .env.example .env
 
-# 3. Modifiez le config.toml généré
-vi config.toml
+# 3. Modifiez le fichier de configuration .env
+vi .env
 
 # 4. Démarrez le moniteur en mode démon
 python3 hath_monitor.py --daemon
@@ -86,23 +86,23 @@ python3 hath_monitor.py --daemon
 
 ## 🛠️ Configuration
 
-Le fichier `config.toml` est divisé en trois sections principales : `[monitor]`, `[notify]`, et `[system]`.
+Consultez [.env.example](../.env.example) pour obtenir la liste complète des variables d'environnement.
 
 ### Canaux de Notification
 
 | Canal | Requis |
 | :--- | :--- |
-| **Bark** | `bark_url` |
-| **Telegram** | `telegram_bot_token`, `telegram_chat_id` |
-| **Discord** | `discord_webhook` |
-| **Slack** | `slack_webhook` |
-| **Pushover** | `pushover_user_key`, `pushover_api_token` |
-| **Gotify** | `gotify_url`, `gotify_token` |
-| **Matrix** | `matrix_url`, `matrix_token`, `matrix_room_id` |
-| **PushPlus** | `pushplus_token` |
-| **PushDeer** | `pushdeer_key` |
-| **DingTalk** | `dingtalk_access_token` |
-| **Webhooks** | `webhooks = ["url1", "url2"]` |
+| **Bark** | `BARK_URL` |
+| **Telegram** | `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` |
+| **Discord** | `DISCORD_WEBHOOK` |
+| **Slack** | `SLACK_WEBHOOK` |
+| **Pushover** | `PUSHOVER_USER_KEY`, `PUSHOVER_API_TOKEN` |
+| **Gotify** | `GOTIFY_URL`, `GOTIFY_TOKEN` |
+| **Matrix** | `MATRIX_URL`, `MATRIX_TOKEN`, `MATRIX_ROOM_ID` |
+| **PushPlus** | `PUSHPLUS_TOKEN` |
+| **PushDeer** | `PUSHDEER_KEY` |
+| **DingTalk** | `DINGTALK_ACCESS_TOKEN` |
+| **Webhooks** | `WEBHOOKS` |
 
 ---
 
@@ -112,9 +112,7 @@ Le fichier `config.toml` est divisé en trois sections principales : `[monitor]`
 | :--- | :--- |
 | `--daemon` | Exécute le script en arrière-plan en tant que démon. |
 | `--verbose / -v` | Active la journalisation de débogage détaillée. |
-| `--history` | Affiche les 20 dernières entrées de l'historique de statut. |
 | `--push-all` | Envoie immédiatement un rapport de statut complet à tous les canaux activés. |
-| `--config PATH` | Spécifie un chemin personnalisé pour le fichier de configuration. |
 
 ---
 

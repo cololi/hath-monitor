@@ -49,17 +49,17 @@
 
 ```bash
 # 1. Скачайте шаблон конфигурации
-curl -L https://raw.githubusercontent.com/cololi/hath-monitor/main/config.toml.example -o config.toml
+curl -L https://raw.githubusercontent.com/cololi/hath-monitor/main/.env.example -o .env
 
-# 2. Отредактируйте config.toml, указав ваши куки EH и токены уведомлений
+# 2. Отредактируйте .env, указав ваши куки EH и токены уведомлений
 # (Используйте ваш любимый редактор: vi, nano или блокнот)
-vi config.toml 
+vi .env 
 
 # 3. Запустите контейнер монитора
 docker run -d \
   --name hath-monitor \
   --restart unless-stopped \
-  -v $(pwd)/config.toml:/app/config.toml \
+  --env-file .env \
   -v $(pwd)/hath_monitor.db:/app/hath_monitor.db \
   ghcr.io/cololi/hath-monitor:latest
 ```
@@ -72,11 +72,11 @@ docker run -d \
 # 1. Клонируйте репозиторий и перейдите в директорию
 git clone https://github.com/cololi/hath-monitor.git && cd hath-monitor
 
-# 2. Создайте файл конфигурации по умолчанию
-python3 hath_monitor.py
+# 2. Скопируйте шаблон переменных окружения
+cp .env.example .env
 
-# 3. Отредактируйте созданный config.toml
-vi config.toml
+# 3. Отредактируйте файл конфигурации .env
+vi .env
 
 # 4. Запустите монитор в режиме демона
 python3 hath_monitor.py --daemon
@@ -86,23 +86,23 @@ python3 hath_monitor.py --daemon
 
 ## 🛠️ Конфигурация
 
-Файл `config.toml` разделен на три основных раздела: `[monitor]`, `[notify]` и `[system]`.
+Полный список переменных окружения см. в [.env.example](../.env.example).
 
 ### Каналы уведомлений
 
 | Канал | Необходимые данные |
 | :--- | :--- |
-| **Bark** | `bark_url` |
-| **Telegram** | `telegram_bot_token`, `telegram_chat_id` |
-| **Discord** | `discord_webhook` |
-| **Slack** | `slack_webhook` |
-| **Pushover** | `pushover_user_key`, `pushover_api_token` |
-| **Gotify** | `gotify_url`, `gotify_token` |
-| **Matrix** | `matrix_url`, `matrix_token`, `matrix_room_id` |
-| **PushPlus** | `pushplus_token` |
-| **PushDeer** | `pushdeer_key` |
-| **DingTalk** | `dingtalk_access_token` |
-| **Webhooks** | `webhooks = ["url1", "url2"]` |
+| **Bark** | `BARK_URL` |
+| **Telegram** | `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` |
+| **Discord** | `DISCORD_WEBHOOK` |
+| **Slack** | `SLACK_WEBHOOK` |
+| **Pushover** | `PUSHOVER_USER_KEY`, `PUSHOVER_API_TOKEN` |
+| **Gotify** | `GOTIFY_URL`, `GOTIFY_TOKEN` |
+| **Matrix** | `MATRIX_URL`, `MATRIX_TOKEN`, `MATRIX_ROOM_ID` |
+| **PushPlus** | `PUSHPLUS_TOKEN` |
+| **PushDeer** | `PUSHDEER_KEY` |
+| **DingTalk** | `DINGTALK_ACCESS_TOKEN` |
+| **Webhooks** | `WEBHOOKS` |
 
 ---
 
@@ -112,9 +112,7 @@ python3 hath_monitor.py --daemon
 | :--- | :--- |
 | `--daemon` | Запустить скрипт в фоновом режиме как демон. |
 | `--verbose / -v` | Включить подробное логирование отладки. |
-| `--history` | Показать последние 20 записей из истории статусов. |
 | `--push-all` | Немедленно отправить полный отчет о статусе во все включенные каналы. |
-| `--config PATH` | Указать пользовательский путь к файлу конфигурации. |
 
 ---
 

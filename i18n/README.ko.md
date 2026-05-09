@@ -49,17 +49,17 @@
 
 ```bash
 # 1. 설정 템플릿 다운로드
-curl -L https://raw.githubusercontent.com/cololi/hath-monitor/main/config.toml.example -o config.toml
+curl -L https://raw.githubusercontent.com/cololi/hath-monitor/main/.env.example -o .env
 
-# 2. EH 쿠키 및 알림 토큰으로 config.toml 수정
+# 2. EH 쿠키 및 알림 토큰으로 .env 수정
 # (vi, nano 또는 메모장 등 선호하는 에디터 사용)
-vi config.toml 
+vi .env 
 
 # 3. 모니터 컨테이너 시작
 docker run -d \
   --name hath-monitor \
   --restart unless-stopped \
-  -v $(pwd)/config.toml:/app/config.toml \
+  --env-file .env \
   -v $(pwd)/hath_monitor.db:/app/hath_monitor.db \
   ghcr.io/cololi/hath-monitor:latest
 ```
@@ -72,11 +72,11 @@ Python (3.11+)으로 직접 실행하려는 경우:
 # 1. 저장소 클론 및 디렉토리 이동
 git clone https://github.com/cololi/hath-monitor.git && cd hath-monitor
 
-# 2. 기본 설정 파일 생성
-python3 hath_monitor.py
+# 2. 환경 변수 템플릿 복사
+cp .env.example .env
 
-# 3. 생성된 config.toml 수정
-vi config.toml
+# 3. .env 설정 파일 수정
+vi .env
 
 # 4. 데몬 모드로 모니터 시작
 python3 hath_monitor.py --daemon
@@ -86,23 +86,23 @@ python3 hath_monitor.py --daemon
 
 ## 🛠️ 설정
 
-`config.toml` 파일은 `[monitor]`, `[notify]`, `[system]`의 세 가지 주요 섹션으로 나뉩니다.
+전체 환경 변수 목록은 [.env.example](../.env.example)를 참조하세요.
 
 ### 알림 채널
 
 | 채널 | 필수 키 |
 | :--- | :--- |
-| **Bark** | `bark_url` |
-| **Telegram** | `telegram_bot_token`, `telegram_chat_id` |
-| **Discord** | `discord_webhook` |
-| **Slack** | `slack_webhook` |
-| **Pushover** | `pushover_user_key`, `pushover_api_token` |
-| **Gotify** | `gotify_url`, `gotify_token` |
-| **Matrix** | `matrix_url`, `matrix_token`, `matrix_room_id` |
-| **PushPlus** | `pushplus_token` |
-| **PushDeer** | `pushdeer_key` |
-| **DingTalk** | `dingtalk_access_token` |
-| **Webhooks** | `webhooks = ["url1", "url2"]` |
+| **Bark** | `BARK_URL` |
+| **Telegram** | `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` |
+| **Discord** | `DISCORD_WEBHOOK` |
+| **Slack** | `SLACK_WEBHOOK` |
+| **Pushover** | `PUSHOVER_USER_KEY`, `PUSHOVER_API_TOKEN` |
+| **Gotify** | `GOTIFY_URL`, `GOTIFY_TOKEN` |
+| **Matrix** | `MATRIX_URL`, `MATRIX_TOKEN`, `MATRIX_ROOM_ID` |
+| **PushPlus** | `PUSHPLUS_TOKEN` |
+| **PushDeer** | `PUSHDEER_KEY` |
+| **DingTalk** | `DINGTALK_ACCESS_TOKEN` |
+| **Webhooks** | `WEBHOOKS` |
 
 ---
 
@@ -112,9 +112,7 @@ python3 hath_monitor.py --daemon
 | :--- | :--- |
 | `--daemon` | 스크립트를 백그라운드에서 데몬으로 실행합니다. |
 | `--verbose / -v` | 상세 디버그 로깅을 활성화합니다. |
-| `--history` | 상태 기록에서 마지막 20개 항목을 표시합니다. |
 | `--push-all` | 활성화된 모든 채널에 즉시 전체 상태 보고서를 푸시합니다. |
-| `--config PATH` | 설정 파일의 사용자 정의 경로를 지정합니다. |
 
 ---
 

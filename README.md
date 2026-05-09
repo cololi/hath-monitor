@@ -53,17 +53,17 @@
 
 Quickly deploy the monitor in a containerized environment:
 
-1. **Get Config**: Download the template.
+1. **Prepare Environment**: Create a `.env` file based on the [template](.env.example).
    ```bash
-   curl -L https://raw.githubusercontent.com/cololi/hath-monitor/main/config.toml.example -o config.toml
+   curl -L https://raw.githubusercontent.com/cololi/hath-monitor/main/.env.example -o .env
    ```
-2. **Configure**: Add your EH cookies and notification tokens to `config.toml`.
+2. **Configure**: Add your EH cookies and notification tokens to `.env`.
 3. **Run**:
    ```bash
    docker run -d \
      --name hath-monitor \
      --restart unless-stopped \
-     -v $(pwd)/config.toml:/app/config.toml \
+     --env-file .env \
      -v $(pwd)/hath_monitor.db:/app/hath_monitor.db \
      ghcr.io/cololi/hath-monitor:latest
    ```
@@ -76,9 +76,9 @@ Run directly on your host machine:
    ```bash
    git clone https://github.com/cololi/hath-monitor.git && cd hath-monitor
    ```
-2. **Initialize**: Generate default configuration.
+2. **Configure**: Copy `.env.example` to `.env` and edit it.
    ```bash
-   python3 hath_monitor.py
+   cp .env.example .env && vi .env
    ```
 3. **Start**:
    ```bash
@@ -95,21 +95,11 @@ Run directly on your host machine:
 | :--- | :--- |
 | `--daemon` | Run the script in the background as a persistent service. |
 | `--verbose / -v` | Enable detailed debug logging for troubleshooting. |
-| `--history` | View the last 20 events recorded in the local database. |
 | `--push-all` | Trigger an immediate status report to all enabled channels. |
-| `--config PATH` | Specify a custom path for the `config.toml` file. |
 
-### Supported Channels
+### Environment Variables
 
-| Channel | Key Parameters |
-| :--- | :--- |
-| **Discord** | `discord_webhook` |
-| **Telegram** | `telegram_bot_token`, `chat_id` |
-| **Bark** | `bark_url` |
-| **Slack** | `slack_webhook` |
-| **Gotify** | `gotify_url`, `token` |
-| **Pushover** | `user_key`, `api_token` |
-| **Webhooks** | `webhooks = ["url1", "url2"]` |
+See [.env.example](.env.example) for a full list of supported variables.
 
 ---
 

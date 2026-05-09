@@ -49,17 +49,17 @@
 
 ```bash
 # 1. قم بتنزيل نموذج التكوين
-curl -L https://raw.githubusercontent.com/cololi/hath-monitor/main/config.toml.example -o config.toml
+curl -L https://raw.githubusercontent.com/cololi/hath-monitor/main/.env.example -o .env
 
-# 2. قم بتحرير ملف config.toml باستخدام ملفات تعريف الارتباط EH ورموز الإشعارات الخاصة بك
+# 2. قم بتحرير ملف .env باستخدام ملفات تعريف الارتباط EH ورموز الإشعارات الخاصة بك
 # (استخدم محرر النصوص المفضل لديك: vi أو nano أو المفكرة)
-vi config.toml 
+vi .env 
 
 # 3. ابدأ حاوية المراقب
 docker run -d \
   --name hath-monitor \
   --restart unless-stopped \
-  -v $(pwd)/config.toml:/app/config.toml \
+  --env-file .env \
   -v $(pwd)/hath_monitor.db:/app/hath_monitor.db \
   ghcr.io/cololi/hath-monitor:latest
 ```
@@ -72,11 +72,11 @@ docker run -d \
 # 1. قم باستنساخ المستودع وادخل إلى الدليل
 git clone https://github.com/cololi/hath-monitor.git && cd hath-monitor
 
-# 2. قم بإنشاء ملف التكوين الافتراضي
-python3 hath_monitor.py
+# 2. قم بنسخ نموذج متغيرات البيئة
+cp .env.example .env
 
-# 3. قم بتحرير ملف config.toml الناتج
-vi config.toml
+# 3. قم بتحرير ملف التكوين .env
+vi .env
 
 # 4. ابدأ المراقب في وضع الخادم الخفي (daemon)
 python3 hath_monitor.py --daemon
@@ -86,23 +86,23 @@ python3 hath_monitor.py --daemon
 
 ## 🛠️ التكوين
 
-ينقسم ملف `config.toml` إلى ثلاثة أقسام رئيسية: `[monitor]` و `[notify]` و `[system]`.
+راجع [.env.example](../.env.example) للحصول على القائمة الكاملة لمتغيرات البيئة.
 
 ### قنوات الإشعارات
 
 | القناة | المتطلبات الأساسية |
 | :--- | :--- |
-| **Bark** | `bark_url` |
-| **Telegram** | `telegram_bot_token`, `telegram_chat_id` |
-| **Discord** | `discord_webhook` |
-| **Slack** | `slack_webhook` |
-| **Pushover** | `pushover_user_key`, `pushover_api_token` |
-| **Gotify** | `gotify_url`, `gotify_token` |
-| **Matrix** | `matrix_url`, `matrix_token`, `matrix_room_id` |
-| **PushPlus** | `pushplus_token` |
-| **PushDeer** | `pushdeer_key` |
-| **DingTalk** | `dingtalk_access_token` |
-| **Webhooks** | `webhooks = ["url1", "url2"]` |
+| **Bark** | `BARK_URL` |
+| **Telegram** | `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` |
+| **Discord** | `DISCORD_WEBHOOK` |
+| **Slack** | `SLACK_WEBHOOK` |
+| **Pushover** | `PUSHOVER_USER_KEY`, `PUSHOVER_API_TOKEN` |
+| **Gotify** | `GOTIFY_URL`, `GOTIFY_TOKEN` |
+| **Matrix** | `MATRIX_URL`, `MATRIX_TOKEN`, `MATRIX_ROOM_ID` |
+| **PushPlus** | `PUSHPLUS_TOKEN` |
+| **PushDeer** | `PUSHDEER_KEY` |
+| **DingTalk** | `DINGTALK_ACCESS_TOKEN` |
+| **Webhooks** | `WEBHOOKS` |
 
 ---
 
@@ -112,9 +112,7 @@ python3 hath_monitor.py --daemon
 | :--- | :--- |
 | `--daemon` | تشغيل السكربت في الخلفية كخادم خفي. |
 | `--verbose / -v` | تمكين تسجيل تصحيح الأخطاء التفصيلي. |
-| `--history` | عرض آخر 20 إدخالاً من سجل الحالة. |
 | `--push-all` | دفع تقرير حالة كامل فوراً إلى جميع القنوات المفعلة. |
-| `--config PATH` | تحديد مسار مخصص لملف التكوين. |
 
 ---
 

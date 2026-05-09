@@ -47,74 +47,53 @@
 
 העתק והדבק פקודות אלו כדי להתחיל מיד:
 
-```bash
-# 1. הורד את תבנית ההגדרה
-curl -L https://raw.githubusercontent.com/cololi/hath-monitor/main/config.toml.example -o config.toml
-
-# 2. ערוך את ה-config.toml עם עוגיות ה-EH ומפתחות ההתראה שלך
-# (השתמש בעורך המועדף עליך: vi, nano או notepad)
-vi config.toml 
-
-# 3. הפעל את קונטיינר הניטור
-docker run -d \
-  --name hath-monitor \
-  --restart unless-stopped \
-  -v $(pwd)/config.toml:/app/config.toml \
-  -v $(pwd)/hath_monitor.db:/app/hath_monitor.db \
-  ghcr.io/cololi/hath-monitor:latest
-```
+1. **הכן את הסביבה**: צור קובץ `.env` המבוסס על ה-[תבנית](.env.example).
+   ```bash
+   curl -L https://raw.githubusercontent.com/cololi/hath-monitor/main/.env.example -o .env
+   ```
+2. **הגדר**: הוסף את עוגיות ה-EH ומפתחות ההתראה שלך לקובץ ה-`.env`.
+3. **הפעל**:
+   ```bash
+   docker run -d \
+     --name hath-monitor \
+     --restart unless-stopped \
+     --env-file .env \
+     -v $(pwd)/hath_monitor.db:/app/hath_monitor.db \
+     ghcr.io/cololi/hath-monitor:latest
+   ```
 
 ### 🐍 התקנה ידנית
 
 אם אתה מעדיף להריץ ישירות עם Python (3.11+):
 
-```bash
-# 1. שכפל את המאגר והיכנס לספרייה
-git clone https://github.com/cololi/hath-monitor.git && cd hath-monitor
-
-# 2. צור את קובץ ההגדרה המחדלי
-python3 hath_monitor.py
-
-# 3. ערוך את ה-config.toml שנוצר
-vi config.toml
-
-# 4. הפעל את הניטור במצב daemon
-python3 hath_monitor.py --daemon
-```
-
----
-
-## 🛠️ הגדרות
-
-קובץ ה-`config.toml` מחולק לשלושה סעיפים עיקריים: `[monitor]`, `[notify]`, ו-`[system]`.
-
-### ערוצי התראות
-
-| ערוץ | דרישת מפתח |
-| :--- | :--- |
-| **Bark** | `bark_url` |
-| **Telegram** | `telegram_bot_token`, `telegram_chat_id` |
-| **Discord** | `discord_webhook` |
-| **Slack** | `slack_webhook` |
-| **Pushover** | `pushover_user_key`, `pushover_api_token` |
-| **Gotify** | `gotify_url`, `gotify_token` |
-| **Matrix** | `matrix_url`, `matrix_token`, `matrix_room_id` |
-| **PushPlus** | `pushplus_token` |
-| **PushDeer** | `pushdeer_key` |
-| **DingTalk** | `dingtalk_access_token` |
-| **Webhooks** | `webhooks = ["url1", "url2"]` |
+1. **שכפל**:
+   ```bash
+   git clone https://github.com/cololi/hath-monitor.git && cd hath-monitor
+   ```
+2. **הגדר**: העתק את `.env.example` ל-`.env` וערוך אותו.
+   ```bash
+   cp .env.example .env && vi .env
+   ```
+3. **הפעל**:
+   ```bash
+   python3 hath_monitor.py --daemon
+   ```
 
 ---
 
-## ⌨️ אפשרויות CLI
+## 🛠️ הגדרות ופקודות
+
+### אפשרויות CLI
 
 | דגל | תיאור |
 | :--- | :--- |
 | `--daemon` | הרץ את הסקריפט ברקע כ-daemon. |
 | `--verbose / -v` | אפשר רישום דיבאג מפורט. |
-| `--history` | הצג את 20 הרשומות האחרונות מהיסטוריית הסטטוס. |
 | `--push-all` | שלח מיד דוח סטטוס מלא לכל הערוצים המופעלים. |
-| `--config PATH` | ציין נתיב מותאם אישית לקובץ ההגדרה. |
+
+### משתני סביבה
+
+ראה [.env.example](.env.example) לרשימה המלאה של המשתנים הנתמכים.
 
 ---
 

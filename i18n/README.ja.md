@@ -49,17 +49,17 @@
 
 ```bash
 # 1. 設定テンプレートをダウンロード
-curl -L https://raw.githubusercontent.com/cololi/hath-monitor/main/config.toml.example -o config.toml
+curl -L https://raw.githubusercontent.com/cololi/hath-monitor/main/.env.example -o .env
 
-# 2. EH の Cookie と通知トークンを使用して config.toml を編集
+# 2. EH の Cookie と通知トークンを使用して .env を編集
 # (使い慣れたエディタを使用してください: vi, nano, メモ帳など)
-vi config.toml 
+vi .env 
 
 # 3. モニターコンテナを起動
 docker run -d \
   --name hath-monitor \
   --restart unless-stopped \
-  -v $(pwd)/config.toml:/app/config.toml \
+  --env-file .env \
   -v $(pwd)/hath_monitor.db:/app/hath_monitor.db \
   ghcr.io/cololi/hath-monitor:latest
 ```
@@ -72,11 +72,11 @@ Python (3.11+) で直接実行したい場合：
 # 1. リポジトリをクローンしてディレクトリに移動
 git clone https://github.com/cololi/hath-monitor.git && cd hath-monitor
 
-# 2. デフォルトの設定ファイルを生成
-python3 hath_monitor.py
+# 2. 環境変数のテンプレートをコピー
+cp .env.example .env
 
-# 3. 生成された config.toml を編集
-vi config.toml
+# 3. .env 設定ファイルを編集
+vi .env
 
 # 4. デーモンモードでモニターを起動
 python3 hath_monitor.py --daemon
@@ -86,23 +86,23 @@ python3 hath_monitor.py --daemon
 
 ## 🛠️ 設定
 
-`config.toml` ファイルは、`[monitor]`、`[notify]`、`[system]` の 3 つの主要セクションに分かれています。
+完全な環境変数リストについては [.env.example](../.env.example) を参照してください。
 
 ### 通知チャンネル
 
 | チャンネル | 必要なキー |
 | :--- | :--- |
-| **Bark** | `bark_url` |
-| **Telegram** | `telegram_bot_token`, `telegram_chat_id` |
-| **Discord** | `discord_webhook` |
-| **Slack** | `slack_webhook` |
-| **Pushover** | `pushover_user_key`, `pushover_api_token` |
-| **Gotify** | `gotify_url`, `gotify_token` |
-| **Matrix** | `matrix_url`, `matrix_token`, `matrix_room_id` |
-| **PushPlus** | `pushplus_token` |
-| **PushDeer** | `pushdeer_key` |
-| **DingTalk** | `dingtalk_access_token` |
-| **Webhooks** | `webhooks = ["url1", "url2"]` |
+| **Bark** | `BARK_URL` |
+| **Telegram** | `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` |
+| **Discord** | `DISCORD_WEBHOOK` |
+| **Slack** | `SLACK_WEBHOOK` |
+| **Pushover** | `PUSHOVER_USER_KEY`, `PUSHOVER_API_TOKEN` |
+| **Gotify** | `GOTIFY_URL`, `GOTIFY_TOKEN` |
+| **Matrix** | `MATRIX_URL`, `MATRIX_TOKEN`, `MATRIX_ROOM_ID` |
+| **PushPlus** | `PUSHPLUS_TOKEN` |
+| **PushDeer** | `PUSHDEER_KEY` |
+| **DingTalk** | `DINGTALK_ACCESS_TOKEN` |
+| **Webhooks** | `WEBHOOKS` |
 
 ---
 
@@ -112,9 +112,7 @@ python3 hath_monitor.py --daemon
 | :--- | :--- |
 | `--daemon` | スクリプトをデーモンとしてバックグラウンドで実行します。 |
 | `--verbose / -v` | 詳細なデバッグログを有効にします。 |
-| `--history` | ステータス履歴から最新の 20 件を表示します。 |
 | `--push-all` | 有効なすべてのチャンネルに、フルステータスレポートを即座に送信します。 |
-| `--config PATH` | 設定ファイルのカスタムパスを指定します。 |
 
 ---
 
