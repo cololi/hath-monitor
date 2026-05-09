@@ -37,6 +37,6 @@ This project is a Python-based monitoring tool designed to track Hentai@Home (H@
 -   **Multilingual Support:** All user-facing strings are localized in `I18N` dictionary in the main script (11 languages supported).
 -   **Scraping:** Use `urllib.request` with custom headers and SSL context handling for stability.
 -   **State Management:** Query SQLite to avoid redundant notifications.
--   **Notifications:** Standardize on localized strings via `get_t(lang, key)`.
+-   **Notifications:** Standardize on localized strings via the global `_` translator (e.g., `_("key", **kwargs)` or `_.key`).
 -   **Error Handling:** Isolation via `try-except` blocks for each check module to ensure overall daemon stability.
 -   **Versioning:** Current version 1.6.0.
